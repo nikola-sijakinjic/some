@@ -4,11 +4,13 @@
   "description": "testing",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "request": "^2.81.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
+    
   },
   "repository": {
     "type": "git",
