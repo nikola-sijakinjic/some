@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \""
+    "test": "npm test"
   },
   "repository": {
     "type": "git",
