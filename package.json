@@ -1,0 +1,29 @@
+{
+  "name": "some",
+  "version": "0.0.1",
+  "description": "testing",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikola-sijakinjic/some.git"
+  },
+  "keywords": [
+    "some",
+    "test"
+  ],
+  "author": "niki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikola-sijakinjic/some/issues"
+  },
+  "homepage": "https://github.com/nikola-sijakinjic/some#readme"
+}
