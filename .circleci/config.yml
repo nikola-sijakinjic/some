@@ -31,10 +31,10 @@ jobs:
           command: npm install
       - run:
           name: unit test
-          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/test-results.html
+          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/unit-tests.html
       - run:
           name: unit test
-          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/test-results.html
+          command: node_modules/mocha/bin/mocha e2e --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/e2e-test.html
       - store_artifacts:
           path: /tmp/artefacts
       - store_artifacts:
