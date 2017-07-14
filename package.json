@@ -8,8 +8,10 @@
   },
   "devDependencies": {
     "chakram": "^1.5.0",
+    "mocha": "^3.4.2",
     "mocha-junit-reporter": "^1.13.0",
-    "mocha-simple-html-reporter": "^1.0.1"
+    "mocha-simple-html-reporter": "^1.0.1",
+    "nyc": "^11.0.3"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"

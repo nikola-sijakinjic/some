@@ -29,9 +29,6 @@ jobs:
       - run:
           name: unit test
           command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=test-restults.xml
-      - run:
-          name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov --reporter-options output=somesome.sss'
       - store_artifacts:
           path: test-results.xml
           prefix: tests
