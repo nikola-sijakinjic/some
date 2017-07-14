@@ -25,10 +25,7 @@ jobs:
       - checkout
       - run:
           name: install mocha
-          command: npm install mocha --save-dev
-      - run:
-          name: install reporter
-          command: npm install --save-dev mocha-simple-html-reporter
+          command: npm install --save-dev mocha-simple-html-reporter nyc mocha
       - run:
           name: unit test
           command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=report.html
