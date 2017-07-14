@@ -6,7 +6,6 @@ jobs:
     docker:
       - image: circleci/node:4.8.2
     # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.   
-      - image: mongo:3.4.4
     steps:
       - checkout
       - run:
@@ -22,10 +21,9 @@ jobs:
           paths:
             - .node_modules
   test:
-    working_directory: ~/mern-starter
+    working_directory: ~/some
     docker:
       - image: circleci/node:4.8.2  
-      - image: mongo:3.4.4
     steps:
       - run:
           name: test
