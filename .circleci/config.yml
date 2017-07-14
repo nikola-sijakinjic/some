@@ -1,5 +1,53 @@
-test:
-  override:
-    - mocha test --reporter mocha-junit-reporter:
-        environment:
-          MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
+version: 2
+jobs:
+  working_directory: ~/tmp
+  build:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - runbabybabyrunbumbum:
+          name: test
+          command: npm test
+      - run:
+          name: test e2e
+          command: node app.js & xx./node_modules/mocha/bin/mocha e2e
+      - run:
+          name: test
+          command: npm test
+      - run: |
+         './node_modules/.bin/nyc report --reporter=text-lcov' 
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: test-results.xml
+
+  test:
+    override:
+        - mocha test --reporter mocha-junit-reporter:
+            environment:          
+                MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml    
+                working_directory: ~/some
+    docker:
+      - image: circleci/node:4.8.2  
+    steps:
+      - run: mocha test --reporter mocha-junit-reporter:
+    environment:
+      - store_test_results:
+          path: /junit
+      - store_artifacts:
+          path: /junit 
