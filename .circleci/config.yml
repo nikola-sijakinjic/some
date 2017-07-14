@@ -27,8 +27,8 @@ jobs:
           name: mkdir artefacts
           command: mkdir -p /tmp/artefacts
       - run:
-          name: install mocha
-          command: npm install --save-dev mocha-simple-html-reporter nyc mocha
+          name: unit test
+          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/test-results.html
       - run:
           name: unit test
           command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/test-results.html
