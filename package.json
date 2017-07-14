@@ -7,7 +7,9 @@
     "express": "^4.15.3"
   },
   "devDependencies": {
-    "chakram": "^1.5.0"
+    "chakram": "^1.5.0",
+    "mocha-junit-reporter": "^1.13.0",
+    "mocha-simple-html-reporter": "^1.0.1"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
