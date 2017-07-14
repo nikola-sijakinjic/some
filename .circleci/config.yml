@@ -34,7 +34,7 @@ jobs:
           command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/unit-tests.html
       - run:
           name: e2e test
-          command: "node app.js & ./node_modules/mocha/bin/mocha e2e --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/e2e-tests.html"
+          command: "node app.js \& ./node_modules/mocha/bin/mocha e2e --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/e2e-tests.html"
      - store_artifacts:
           path: /tmp/artefacts
       - store_artifacts:
