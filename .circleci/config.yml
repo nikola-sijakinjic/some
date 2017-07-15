@@ -24,8 +24,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: mkdir artefacts
-          command: mkdir -p /tmp/artefacts
+          name: mkdir dirs
+          command: mkdir -p /tmp/artefacts && mkdir .nyc_output
       - run:
           name: npm install
           command: npm install
