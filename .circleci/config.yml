@@ -1,22 +1,5 @@
 version: 2
 jobs:
-  build:
-    working_directory: ~/some
-    # The primary container is an instance of the first list image listed. Your build commands run in this container.
-    docker:
-      - image: circleci/node:6.11.1
-    # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.   
-    steps:
-      - checkout
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - .node_modules
   test:
     working_directory: ~/some
     docker:
@@ -43,6 +26,23 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: coverage
+  build:
+    working_directory: ~/some
+    # The primary container is an instance of the first list image listed. Your build commands run in this container.
+    docker:
+      - image: circleci/node:6.11.1
+    # The secondary container is an instance of the second listed image which is run in a common network where ports exposed on the primary container are available on localhost.   
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - .node_modules
 workflows:
   version: 2
   build_and_test:
