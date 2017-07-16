@@ -1,31 +1,5 @@
 version: 2
 jobs:
-  test:
-    working_directory: ~/some
-    docker:
-      - image: circleci/node:6.11.1  
-    steps:
-      - checkout
-      - run:
-          name: mkdir dirs
-          command: mkdir -p /tmp/artefacts && mkdir .nyc_output
-      - run:
-          name: npm install
-          command: npm install
-      - run:
-          name: unit test
-          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/unit-tests.html
-      - run:
-          name: unit test coverage
-          command: ./node_modules/nyc/bin/nyc.js report --reporter=html
-      - run:
-          name: unit test
-          command: node app.js & node_modules/mocha/bin/mocha e2e --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/e2e-test.html
-      - store_test_results:
-          path: /tmp/artefacts
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
   build:
     working_directory: ~/some
     # The primary container is an instance of the first list image listed. Your build commands run in this container.
@@ -43,6 +17,32 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - .node_modules
+  test:
+    working_directory: ~/some
+    docker:
+      - image: circleci/node:6.11.1  
+    steps:
+      - checkout
+      - run:
+          name: mkdir dirs
+          command: mkdir -p /tmp/artefacts && mkdir .nyc_output
+      - run:
+          name: npm install
+          command: npm install
+      - run:
+          name: unit test
+          command: node_modules/mocha/bin/mocha --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/tests/unit-tests.html
+      - run:
+          name: unit test coverage
+          command: ./node_modules/nyc/bin/nyc.js report --reporter=html
+      - run:
+          name: unit test
+          command: node app.js & node_modules/mocha/bin/mocha e2e --reporter mocha-simple-html-reporter --reporter-options output=/tmp/artefacts/tests/e2e-test.html
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
 workflows:
   version: 2
   build_and_test:
