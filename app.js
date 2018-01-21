@@ -1,18 +1,21 @@
-const express = require('express')
-const app = express()
+//const express = require('express')
+//const app = express()
 
-s = function(num) {
-    return num+1;
-}
+const  moment = require('moment-timezone');
 
-indexController = function (req,res){
-      res.send('Hello World!')
-};
+moment.tz('Europe/London');
 
-app.get('/', indexController);
+//const m = moment([2017,10,10]).toISOString();
+// const m = moment([2017,10,10]).tz('Europe/Belgrade').format();
+// const m = moment([2017,10,10]).tz('Europe/Belgrade').format();
+moment.tz('utc');
+const m = moment('2017-10-10').format();
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
 
-module.exports.indexController = indexController;
+console.log(m);
+
+//d = (new Date(2017,10,10)).getUTCDate();
+var d = new Date('2017-10-10');
+
+
+console.log(d);
